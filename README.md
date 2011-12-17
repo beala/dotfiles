@@ -3,6 +3,6 @@ The .vimrc here is largely based on [this great tutorial](http://mislav.uniqpath
 
 Command-T in the bundle directory is a submodule. Install:
 
-  git submodule init
+  `git submodule init
   cd .vim/bundle/commandt
-  rake make
+  rake make`
