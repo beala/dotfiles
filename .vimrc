@@ -8,8 +8,9 @@ filetype plugin indent on       "load filetype plugins + indentation
 set number                      "turn on line numbers
 "" Whitespace
 set nowrap                      "don't wrap lines
-set softtabstop=2               "interpret tab as indent, rather than insert tab
-set tabstop=4 shiftwidth=2      "a tab is two spaces
+set softtabstop=4               "indent 4 columns/spaces when in insert mode
+set tabstop=4                   "tabs indent 4 columns
+set shiftwidth=4                "indent 4 columns when using automatic reindentation
 set expandtab                   "use spaces, not tabs
 set backspace=indent,eol,start  "backspace through everything in insert mode
 set list                        "show invisible characters
