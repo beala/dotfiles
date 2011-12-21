@@ -6,6 +6,7 @@ set encoding=utf-8
 set showcmd                     "display incomplete commands
 filetype plugin indent on       "load filetype plugins + indentation
 set number                      "turn on line numbers
+set ruler                       "enable line and column number count
 "" Whitespace
 set nowrap                      "don't wrap lines
 set softtabstop=4               "indent 4 columns/spaces when in insert mode
