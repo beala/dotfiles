@@ -5,6 +5,9 @@ syntax enable
 set encoding=utf-8
 set showcmd                     "display incomplete commands
 filetype plugin indent on       "load filetype plugins + indentation
+filetype on
+set autoindent                  "copy indent from row above
+set si                          "smart indent
 set number                      "turn on line numbers
 set ruler                       "enable line and column number count
 "" Whitespace
