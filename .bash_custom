@@ -7,3 +7,5 @@ PS1="\n$SC[\w]$EC$GRN[\h]$EC\n\u\$ "
 if [ -f ~/.irm ]; then
   . ~/.irm
 fi
+
+pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
