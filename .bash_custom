@@ -4,8 +4,13 @@ EC="\e[0m"  #end color code
 GRN='\e[0;32m'
 PS1="\n$SC[\w]$EC$GRN[\h]$EC\n\u\$ "
 
+# Include .irm an "Improved rm" command.
 if [ -f ~/.irm ]; then
   . ~/.irm
 fi
 
+# Send stdin to sprunge.us (pastebin service)
 pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
+
+# Aliases
+alias dir-size="du -hs"
