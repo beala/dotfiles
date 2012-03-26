@@ -43,3 +43,6 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 let g:Powerline_symbols = 'fancy'
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set laststatus=2
+
+" TagbarToggle config
+nmap <leader>t :TagbarToggle<CR>
