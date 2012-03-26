@@ -14,3 +14,5 @@ pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
 
 # Aliases
 alias dir-size="du -hs"
+
+export EDITOR=vim
