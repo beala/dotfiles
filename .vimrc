@@ -38,3 +38,8 @@ cnoremap $$ <C-R>=expand('%:h').'/'<cr>
 " ,f for commandT
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+
+" Powerline config
+let g:Powerline_symbols = 'fancy'
+set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+set laststatus=2
