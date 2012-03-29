@@ -31,18 +31,14 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 " use comma as <Leader> key instead of backslash
 let mapleader=","
-" double percentage sign in command mode is expanded
-" to directory of current file - http://vimcasts.org/e/14
-cnoremap $$ <C-R>=expand('%:h').'/'<cr>
-
+" Press alt-> or alt-< to smoothly adjust split buffer width.
+nmap ˘ :vertical res +1<cr>
+nmap ¯ :vertical res -1<cr>
 " ,f for commandT
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
-
 " Powerline config
 let g:Powerline_symbols = 'fancy'
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set laststatus=2
-
 " TagbarToggle config
 nmap <leader>t :TagbarToggle<CR>
