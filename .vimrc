@@ -31,11 +31,11 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 " use comma as <Leader> key instead of backslash
 let mapleader=","
-" Alt-[arrow key] adjusts split window size.
-nnoremap <A-Right> :vertical res +1<cr>
-nnoremap <A-Left> :vertical res -1<cr>
-nnoremap <A-Up> :res +1<cr>
-nnoremap <A-Down> :res -1<cr>
+" ,-[arrow key] adjusts split window size.
+nnoremap <leader><Right> :vertical res +5<cr>
+nnoremap <leader><Left> :vertical res -5<cr>
+nnoremap <leader><Up> :res +5<cr>
+nnoremap <leader><Down> :res -5<cr>
 " Remap leader to ,
 " ,f for commandT
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
