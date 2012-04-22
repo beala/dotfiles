@@ -6,5 +6,4 @@ vbell off
 screen -t bash 0 bash
 screen -t bash 1 bash
 screen -t bash 2 bash
-screen -t top 9 nice top -o rsize 
 select 0
