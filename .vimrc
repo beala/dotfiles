@@ -9,6 +9,8 @@ filetype on
 set autoindent                  "copy indent from row above
 set number                      "turn on line numbers
 set ruler                       "enable line and column number count
+"Turn on highlighting, and highlight current line with grey.
+set cursorline
 "" Whitespace
 set nowrap                      "don't wrap lines
 set softtabstop=4               "indent 4 columns/spaces when in insert mode
