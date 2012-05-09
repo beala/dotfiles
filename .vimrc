@@ -8,7 +8,7 @@ filetype plugin indent on       "load filetype plugins + indentation
 filetype on
 set autoindent                  "copy indent from row above
 set number                      "turn on line numbers
-set ruler                       "enable line and column number count
+set colorcolumn=80              "highlight the 80th column
 "Turn on highlighting, and highlight current line with grey.
 set cursorline
 "" Whitespace
