@@ -6,7 +6,7 @@
 	url = git://git.wincent.com/command-t.git
 [submodule "irm"]
 	path = irm
-	url = git://github.com/beala/dotfiles.git
+	url = git://github.com/beala/irm.git
 [submodule ".vim/bundle/vim-easymotion"]
 	path = .vim/bundle/vim-easymotion
 	url = git://github.com/Lokaltog/vim-easymotion.git
