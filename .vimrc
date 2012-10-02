@@ -38,6 +38,9 @@ nnoremap <leader><Right> :vertical res +5<cr>
 nnoremap <leader><Left> :vertical res -5<cr>
 nnoremap <leader><Up> :res +5<cr>
 nnoremap <leader><Down> :res -5<cr>
+" Copy paste from system clipboard.
+noremap <leader>c "*y<cr>
+noremap <leader>v :set paste<cr>"*p<cr>:set nopaste<cr>
 " Remap leader to ,
 " ,f for commandT
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
