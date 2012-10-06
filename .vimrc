@@ -19,7 +19,7 @@ set shiftwidth=4                "indent 4 columns when using automatic reindenta
 set expandtab                   "use spaces, not tabs
 set backspace=indent,eol,start  "backspace through everything in insert mode
 set list                        "show invisible characters
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<   "reaplce invisibles with this shit
+set listchars=tab:>-,trail:~,extends:>,precedes:<   "reaplce invisibles with this shit
 
 "" Searching
 set hlsearch                    "highlight search
