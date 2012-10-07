@@ -3,3 +3,4 @@ set wrap lbr
 map j gj
 map k gk
 set noautoindent
+set nolist
