@@ -50,3 +50,5 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set laststatus=2
 " TagbarToggle config
 nmap <leader>t :TagbarToggle<CR>
+" Turn off auto autocompletion after a dot:
+let g:jedi#popup_on_dot = 0
