@@ -1,5 +1,5 @@
 # Push in vi mode.
-set -o vi
+#set -o vi
 
 #Set up the prompt
 SC="\e[0;33m" #start color code. Change code to change the color of the PWD.

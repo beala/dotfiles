@@ -19,7 +19,7 @@ set shiftwidth=4                "indent 4 columns when using automatic reindenta
 set expandtab                   "use spaces, not tabs
 set backspace=indent,eol,start  "backspace through everything in insert mode
 set list                        "show invisible characters
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<   "reaplce invisibles with this shit
+set listchars=tab:>-,trail:~,extends:>,precedes:<   "reaplce invisibles with this shit
 
 "" Searching
 set hlsearch                    "highlight search
@@ -50,5 +50,3 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set laststatus=2
 " TagbarToggle config
 nmap <leader>t :TagbarToggle<CR>
-" Turn off auto autocompletion after a dot:
-let g:jedi#popup_on_dot = 0
