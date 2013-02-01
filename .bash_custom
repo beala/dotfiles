@@ -18,6 +18,8 @@ pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
 # Aliases
 alias dir-size="du -hs"
 alias pgen="xkpa -nil 6 -s ''"
+# Git
+alias gtree="git log --graph --oneline --all"
 
 export EDITOR=vim
 
