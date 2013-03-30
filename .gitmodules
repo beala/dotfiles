@@ -31,6 +31,3 @@
 [submodule "z"]
 	path = z
 	url = git://github.com/rupa/z.git
-[submodule ".vim/bundle/omlet.vim"]
-	path = .vim/bundle/omlet.vim
-	url = git://github.com/vim-scripts/omlet.vim.git
