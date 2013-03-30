@@ -10,7 +10,7 @@ set autoindent                  "copy indent from row above
 set number                      "turn on line numbers
 set colorcolumn=80              "highlight the 80th column
 "Turn on highlighting, and highlight current line with grey.
-set cursorline
+"set cursorline
 "" Whitespace
 set nowrap                      "don't wrap lines
 set softtabstop=4               "indent 4 columns/spaces when in insert mode

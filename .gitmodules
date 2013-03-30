@@ -28,6 +28,9 @@
 [submodule ".vim/bundle/jedi-vim"]
 	path = .vim/bundle/jedi-vim
 	url = git://github.com/davidhalter/jedi-vim.git
-[submodule ".vim/bundle/omlet"]
-	path = .vim/bundle/omlet
+[submodule "z"]
+	path = z
+	url = git://github.com/rupa/z.git
+[submodule ".vim/bundle/omlet.vim"]
+	path = .vim/bundle/omlet.vim
 	url = git://github.com/vim-scripts/omlet.vim.git
