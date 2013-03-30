@@ -18,9 +18,14 @@ pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
 # Aliases
 alias dir-size="du -hs"
 alias pgen="xkpa -nil 6 -s ''"
+alias p="pushd"
+alias r="popd"
+alias la="ls -Gla"
+alias l="ls -Ga"
 # Git
 alias gtree="git log --graph --oneline --all"
 
 export EDITOR=vim
-
 export PATH="$PATH:/Users/beala/bin"
+
+source ~/dotfiles/z/z.sh

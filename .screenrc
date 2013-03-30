@@ -1,6 +1,6 @@
 startup_message off
 caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%< %{=b BW} %{-} %l"
-defscrollback 1024
+defscrollback 10000
 vbell off
 
 screen -t bash 0 bash
