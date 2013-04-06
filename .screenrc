@@ -1,3 +1,4 @@
+termcapinfo xterm* ti@:te@
 startup_message off
 caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%< %{=b BW} %{-} %l"
 defscrollback 10000
