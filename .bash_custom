@@ -29,3 +29,4 @@ export EDITOR=vim
 export PATH="$PATH:/Users/beala/bin"
 
 source ~/dotfiles/z/z.sh
+source ~/dotfiles/git-completion.bash
