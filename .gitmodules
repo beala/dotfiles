@@ -34,3 +34,6 @@
 [submodule ".vim/bundle/omlet.vim"]
 	path = .vim/bundle/omlet.vim
 	url = git://github.com/vim-scripts/omlet.vim.git
+[submodule ".vim/bundle/haskellmode-vim"]
+	path = .vim/bundle/haskellmode-vim
+	url = git@github.com:lukerandall/haskellmode-vim.git
