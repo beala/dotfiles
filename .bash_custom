@@ -15,6 +15,24 @@ fi
 # Send stdin to sprunge.us (pastebin service)
 pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
 
+# Create function for sharing files to S3.
+share() {
+    s3cmd -P put "$@" s3://share.usrsb.in
+    for file in "$@"; do
+        echo "http://share.usrsb.in/$file"
+    done
+}
+
+rmshare() {
+    for file in "$@"; do
+        s3cmd del "s3://share.usrsb.in/$file"
+    done
+}
+
+lsshare() {
+    s3cmd ls "s3://share.usrsb.in/"
+}
+
 # Aliases
 alias dir-size="du -hs"
 alias pgen="xkpa -nil 6 -s ''"
@@ -22,6 +40,8 @@ alias p="pushd"
 alias r="popd"
 alias ll="ls -Gla"
 alias ls="ls -G"
+alias ppj="python -mjson.tool"
+alias rsrc="source ~/.bashrc"
 # Git
 alias gtree="git log --graph --oneline --all"
 
