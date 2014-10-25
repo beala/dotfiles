@@ -33,6 +33,18 @@ lsshare() {
     s3cmd ls "s3://share.usrsb.in/"
 }
 
+torrent() {
+    scp "$1" raspi-local:~/torrents/
+}
+
+lstorrent() {
+    ssh raspi-local "ls ~/torrents"
+}
+
+gettorrent() {
+    scp -r raspi-local:~/torrents/"$1" .
+}
+
 # Aliases
 alias dir-size="du -hs"
 alias pgen="xkpa -nil 6 -s ''"
@@ -51,5 +63,4 @@ export PATH="$PATH:$HOME/bin"
 # Cabal path
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
-source ~/dotfiles/z/z.sh
 source ~/dotfiles/git-completion.bash

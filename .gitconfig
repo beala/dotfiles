@@ -3,6 +3,7 @@
     email = alexlbeal@gmail.com
 [core]
     excludesfile = ~/.gitignore
+	editor = /usr/local/bin/vim
 [alias]
     stash-unapply = !git stash show -p | git apply -R
     co = checkout
