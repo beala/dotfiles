@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+#
+# by Erik Osheim
+#
+# This program unboxes various archive 
+
+import os
+import shutil
+from subprocess import call
+import sys
+import tempfile
+
+# list each kind of archive in terms of extension, and then program and
+# arguments to use. Use None to indicate where the filename should be placed.
+handlers = {
+    '.rar':     ['unrar', 'e', None],
+    '.zip':     ['unzip', None],
+    '.jar':     ['unzip', None],
+    '.tgz':     ['tar', 'xvzf', None],
+    '.tbz':     ['tar', 'xvjf', None],
+    '.tar':     ['tar', 'xvf', None],
+    '.tar.gz':  ['tar', 'xvzf', None],
+    '.tar.bz2': ['tar', 'xvjf', None],
+    '.7z':      ['7zr', 'x', None],
+    #'.tar.xz':  ['tar', 'xvJz', None],
+}
+
+# program usage
+def usage(err=None):
+    retval = 0
+    if err:
+        retval = 1
+        print 'error: %s' % err
+    print 'usage: unbox ARCHIVE'
+    sys.exit(retval)
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    if not args:
+        usage()
+    elif len(args) > 1:
+        usage('too many arguments')
+    path = args[0]
+    if not os.path.exists(path):
+        usage('path %r does not exist' % path)
+
+    cmd = None
+    for ext in handlers:
+        if path.endswith(ext):
+            cmd  = handlers[ext]
+            base = path[:-len(ext)]
+    if not cmd:
+        usage("can't handle path %r" % path)
+
+    d = tempfile.mkdtemp(prefix='unbox-')
+
+    fd, path2 = tempfile.mkstemp(dir=d)
+    os.write(fd, open(path, 'rb').read())
+    os.close(fd)
+
+    cwd = os.getcwd()
+    print d
+    os.chdir(d)
+
+    base2 = os.path.basename(path2)
+
+    # put the path into the command
+    cmd = [x or base2 for x in cmd]
+
+    retcode = call(cmd)
+    if retcode != 0:
+        print 'error: %s failed (%d)' % (cmd[0], retcode)
+        sys.exit(1)
+
+    os.unlink(path2)
+
+    items = os.listdir(d)
+
+    dest = cwd + '/' + base
+    if os.path.exists(dest):
+        print "%r already exists!" % dest
+    elif len(items) == 1:
+        shutil.move(d + '/' + items[0], dest)
+        shutil.rmtree(d)
+    else:
+        shutil.move(d, dest)
