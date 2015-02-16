@@ -17,11 +17,11 @@ installDir = home
 
 -- The directory containing the dotfiles to install.
 dotfilesDir :: IO FilePath
-dotfilesDir = parent <$> execPath
+dotfilesDir = parent <$> scriptDir
 
--- Path to this executable.
-execPath :: IO FilePath
-execPath = do
+-- Directory containing this script.
+scriptDir :: IO FilePath
+scriptDir = do
   relativePath <- Fs.decodeString <$> getProgName
   fullPath <- realpath relativePath
   return $ directory fullPath
@@ -94,8 +94,8 @@ main = do
                     <$> showFilePath dotFilesPath
                     <*> showFilePath installPath
   echoNoNewline confirmMessage
-  isNotCorrectPath <- isNo <$> readline
-  when isNotCorrectPath (die "Aborting.")
+  incorrectCorrectPath <- isNo <$> readline
+  when incorrectCorrectPath (die "Aborting.")
 
   let installInfo = getInstallInfo dotFilesPath installPath
   retCodes <- traverse (symLink <$> linkSource <*> fullTarget) installInfo
