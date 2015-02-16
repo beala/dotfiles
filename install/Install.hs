@@ -94,8 +94,8 @@ main = do
                     <$> showFilePath dotFilesPath
                     <*> showFilePath installPath
   echoNoNewline confirmMessage
-  incorrectCorrectPath <- isNo <$> readline
-  when incorrectCorrectPath (die "Aborting.")
+  incorrectPath <- isNo <$> readline
+  when incorrectPath (die "Aborting.")
 
   let installInfo = getInstallInfo dotFilesPath installPath
   retCodes <- traverse (symLink <$> linkSource <*> fullTarget) installInfo
