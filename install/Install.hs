@@ -22,12 +22,12 @@ dotfilesDir = parent <$> execPath
 -- Path to this executable.
 execPath :: IO FilePath
 execPath = do
-	relativePath <- Fs.decodeString <$> getProgName
-	fullPath <- realpath relativePath
-	return $ directory fullPath
+  relativePath <- Fs.decodeString <$> getProgName
+  fullPath <- realpath relativePath
+  return $ directory fullPath
 
 data LinkDescription = LinkDescription {linkSource :: FilePath, linkTargetDir :: FilePath, linkTargetName :: FilePath}
-						deriving Show
+            deriving Show
 
 -- Get the full target path from a LinkDescription
 fullTarget :: LinkDescription -> FilePath
@@ -36,14 +36,14 @@ fullTarget = (</>) <$> linkTargetDir <*> linkTargetName
 -- List of all the symlinks to make.
 getInstallInfo :: FilePath -> FilePath -> [LinkDescription]
 getInstallInfo dotfilesBase installBase =
-	[LinkDescription (dotfilesBase </> ".bash_custom") 	installBase 			".bash_custom",
-	 LinkDescription (dotfilesBase </> ".gitconfig") 	installBase 			".gitconfig",
-	 LinkDescription (dotfilesBase </> ".screenrc") 	installBase 			".screenrc",
-	 LinkDescription (dotfilesBase </> ".vimrc") 		installBase 			".vimrc",
-	 LinkDescription (dotfilesBase </> ".vim") 			installBase 			".vim",
-	 LinkDescription (dotfilesBase </> "irm/irm.sh") 	installBase 			".irm",
-	 LinkDescription (dotfilesBase </> "bin/colors") 	(installBase </> "bin") "colors",
-	 LinkDescription (dotfilesBase </> "bin/unbox") 	(installBase </> "bin") "unbox"]
+  [LinkDescription (dotfilesBase </> ".bash_custom")  installBase             ".bash_custom",
+   LinkDescription (dotfilesBase </> ".gitconfig")    installBase             ".gitconfig",
+   LinkDescription (dotfilesBase </> ".screenrc")     installBase             ".screenrc",
+   LinkDescription (dotfilesBase </> ".vimrc")        installBase             ".vimrc",
+   LinkDescription (dotfilesBase </> ".vim")          installBase             ".vim",
+   LinkDescription (dotfilesBase </> "irm/irm.sh")    installBase             ".irm",
+   LinkDescription (dotfilesBase </> "bin/colors")    (installBase </> "bin") "colors",
+   LinkDescription (dotfilesBase </> "bin/unbox")     (installBase </> "bin") "unbox"]
 
 -- Show a Showable as Text
 showText :: Show a => a -> Text
@@ -53,17 +53,17 @@ showText = Te.pack . show
 -- cannot be represented, die with error message.
 showFilePath :: FilePath -> IO Text
 showFilePath fp =
-	case T.toText fp of
-		Left errMsg -> die $ format ("Error processing path: "%s%"\n\t"%s) (showText fp) errMsg
-		Right textFp -> return textFp
+  case T.toText fp of
+    Left errMsg -> die $ format ("Error processing path: "%s%"\n\t"%s) (showText fp) errMsg
+    Right textFp -> return textFp
 
 -- Creates a symbolic link pointing from src to target.
 symLink :: FilePath -> FilePath -> IO ExitCode
 symLink src target = do
-	srcText <- showFilePath src
-	targetText <- showFilePath target
-	echo $ format ("Linking "%s%" to "%s) srcText targetText
-	proc "ln" ["-s", srcText, targetText] empty
+  srcText <- showFilePath src
+  targetText <- showFilePath target
+  echo $ format ("Linking "%s%" to "%s) srcText targetText
+  proc "ln" ["-s", srcText, targetText] empty
 
 -- True iff the pattern matches.
 matchesPattern :: T.Pattern Text -> Text -> Bool
@@ -82,21 +82,21 @@ isFailure (ExitSuccess) = False
 -- Echo without printing a newline after the output text.
 echoNoNewline :: Text -> IO ()
 echoNoNewline msg = do
-	Te.putStr msg
-	Sys.hFlush Sys.stdout
+  Te.putStr msg
+  Sys.hFlush Sys.stdout
 
 main :: IO ()
 main = do
-	installPath <- installDir
-	dotFilesPath <- dotfilesDir
+  installPath <- installDir
+  dotFilesPath <- dotfilesDir
 
-	confirmMessage <- format ("Installing files from ["%s%"] to ["%s%"]. Is this correct? [y/n] ")
-					   <$> showFilePath dotFilesPath
-					   <*> showFilePath installPath
-	echoNoNewline confirmMessage
-	isNotCorrectPath <- isNo <$> readline
-	when isNotCorrectPath (die "Aborting.")
+  confirmMessage <- format ("Installing files from ["%s%"] to ["%s%"]. Is this correct? [y/n] ")
+                    <$> showFilePath dotFilesPath
+                    <*> showFilePath installPath
+  echoNoNewline confirmMessage
+  isNotCorrectPath <- isNo <$> readline
+  when isNotCorrectPath (die "Aborting.")
 
-	let installInfo = getInstallInfo dotFilesPath installPath
-	retCodes <- traverse (symLink <$> linkSource <*> fullTarget) installInfo
-	if any isFailure retCodes then exit 1 else exit 0
+  let installInfo = getInstallInfo dotFilesPath installPath
+  retCodes <- traverse (symLink <$> linkSource <*> fullTarget) installInfo
+  if any isFailure retCodes then exit 1 else exit 0
