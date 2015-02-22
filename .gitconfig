@@ -7,5 +7,6 @@
 [alias]
     stash-unapply = !git stash show -p | git apply -R
     co = checkout
+    st = status
 [push]
 	default = simple

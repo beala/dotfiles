@@ -1,0 +1,5 @@
+cabal sandbox init
+cabal install alex happy
+cabal install gtk2hs-buildtools
+PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig" cabal install threadscope
+ln -s "$PWD/.cabal-sandbox/bin/threadscope" ~/bin/

@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/beala/SpiderOak/Programming/haskell/usrsbin/.cabal-sandbox'
+let g:netrw_dirhist_2='/Users/beala/SpiderOak/Programming/haskell/usrsbin/posts-old'
+let g:netrw_dirhist_3='/Users/beala/workspace/haskell/usrsbin/templates'
+let g:netrw_dirhist_4='/Users/beala/.cabal'
+let g:netrw_dirhist_5='/Users/beala/Downloads/PebbleSDK-2.0-BETA4/Examples/watchapps/feature_clock_mode'
+let g:netrw_dirhist_6='/Users/beala/workspace/mesh/BoulderMeshSite/.git'
+let g:netrw_dirhist_7='/Users/beala/workspace/mesh/BoulderMeshSite/source/connecting'

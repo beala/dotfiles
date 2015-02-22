@@ -43,7 +43,8 @@ getInstallInfo dotfilesBase installBase =
    LinkDescription (dotfilesBase </> ".vim")          installBase             ".vim",
    LinkDescription (dotfilesBase </> "irm/irm.sh")    installBase             ".irm",
    LinkDescription (dotfilesBase </> "bin/colors")    (installBase </> "bin") "colors",
-   LinkDescription (dotfilesBase </> "bin/unbox")     (installBase </> "bin") "unbox"]
+   LinkDescription (dotfilesBase </> "bin/unbox")     (installBase </> "bin") "unbox",
+   LinkDescription (dotfilesBase </> "hs-tools")      installBase             "hs-tools"]
 
 -- Show a Showable as Text
 showText :: Show a => a -> Text
