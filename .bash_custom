@@ -1,15 +1,14 @@
-# Push in vi mode.
-#set -o vi
-
-#Set up the prompt
-SC="\e[0;33m" #start color code. Change code to change the color of the PWD.
-EC="\e[0m"  #end color code
-GRN='\e[0;32m'
-PS1="$SC[\w]$EC$GRN[\h]$EC\n\u\$ "
-
 # Include .irm an "Improved rm" command.
 if [ -f ~/.irm ]; then
   . ~/.irm
+fi
+
+if [ -f ~/.bash_work ]; then
+  . ~/bash_work
+fi
+
+if [ -f ~/.bash_home ]; then
+  . ~/bash_home
 fi
 
 # Send stdin to sprunge.us (pastebin service)
@@ -53,7 +52,7 @@ alias r="popd"
 alias ll="ls -Gla"
 alias ls="ls -G"
 alias ppj="python -mjson.tool"
-alias rsrc="source ~/.bashrc"
+alias rsrc="source ~/.bash_profile"
 # Git
 alias gtree="git log --graph --oneline --all"
 
@@ -62,8 +61,59 @@ export PATH="$PATH:$HOME/bin"
 
 source ~/dotfiles/git-completion.bash
 
+# Prevent XQuartz from launching whenever I open vim.
+export DISPLAY=
+
 # Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
 export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
 if [ -d "$GHC_DOT_APP" ]; then
-    export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+        export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
+
+sping ()
+{
+    if [ -z "$1" ]; then
+        echo "Usage: sping <hostname> [<host2> <host3>]";
+        return;
+    fi;
+    date
+    if [ "$2" ]; then
+        while sleep 1; do
+            host_down=false;
+            for host in $@;
+            do
+                tcping -t 2 $host 22 || host_down="true";
+            done;
+            [ $host_down = true ] || {
+                unset HOSTS && break
+            };
+        done;
+    else
+        while sleep 1; do
+            tcping -t 2 $1 22 && break;
+        done;
+    fi
+    date
+}
+
+deploy_tag ()
+{
+    APP="$1"
+    if [ -z "$APP" ]; then
+        echo "Please supply an app name. deploy_tag APP_NAME"
+        return 1
+    fi
+    TAG="datadelivery-enrichments/$APP-release-$(date +%Y-%m-%d-%s)"
+    git tag "$TAG" && git push origin "$TAG"
+}
+
+rm_host ()
+{
+    LINE="$1"
+    if [ -z "$LINE" ]; then
+        echo "Please supply an line number. rm_host LINE"
+        return 1
+    fi
+    echo "Removing: $(sed -n "$LINE"p ~/.ssh/known_hosts)"
+    sed -i ".bak" "$LINE"d ~/.ssh/known_hosts
+}
