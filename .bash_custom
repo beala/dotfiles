@@ -4,11 +4,11 @@ if [ -f ~/.irm ]; then
 fi
 
 if [ -f ~/.bash_work ]; then
-  . ~/bash_work
+  . ~/.bash_work
 fi
 
 if [ -f ~/.bash_home ]; then
-  . ~/bash_home
+  . ~/.bash_home
 fi
 
 # Send stdin to sprunge.us (pastebin service)

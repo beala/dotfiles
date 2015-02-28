@@ -27,7 +27,7 @@ scriptDir = do
   return $ directory fullPath
 
 data LinkDescription = LinkDescription {linkSource :: FilePath, linkTargetDir :: FilePath, linkTargetName :: FilePath}
-            deriving Show
+                        deriving Show
 
 -- Get the full target path from a LinkDescription
 fullTarget :: LinkDescription -> FilePath
@@ -44,7 +44,9 @@ getInstallInfo dotfilesBase installBase =
    LinkDescription (dotfilesBase </> "irm/irm.sh")    installBase             ".irm",
    LinkDescription (dotfilesBase </> "bin/colors")    (installBase </> "bin") "colors",
    LinkDescription (dotfilesBase </> "bin/unbox")     (installBase </> "bin") "unbox",
-   LinkDescription (dotfilesBase </> "hs-tools")      installBase             "hs-tools"]
+   LinkDescription (dotfilesBase </> "hs-tools")      installBase             "hs-tools",
+   LinkDescription (dotfilesBase </> ".bash_work")    installBase             ".bash_work",
+   LinkDescription (dotfilesBase </> ".bash_home")    installBase             ".bash_home"]
 
 -- Show a Showable as Text
 showText :: Show a => a -> Text
