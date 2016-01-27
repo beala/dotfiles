@@ -1,4 +1,5 @@
-#!/usr/bin/env runhaskell
+#!/usr/bin/env stack
+-- stack --install-ghc runghc --package turtle
 
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -102,4 +103,4 @@ main = do
 
   let installInfo = getInstallInfo dotFilesPath installPath
   retCodes <- traverse (symLink <$> linkSource <*> fullTarget) installInfo
-  if any isFailure retCodes then exit 1 else exit 0
+  if any isFailure retCodes then exit (ExitFailure 1) else exit ExitSuccess
