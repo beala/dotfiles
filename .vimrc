@@ -1,5 +1,3 @@
-call pathogen#infect()          "setup pathogen
-call pathogen#helptags()        "create help tags
 set nocompatible
 syntax enable
 set encoding=utf-8
@@ -8,7 +6,7 @@ filetype plugin indent on       "load filetype plugins + indentation
 filetype on
 set autoindent                  "copy indent from row above
 set number                      "turn on line numbers
-set colorcolumn=80              "highlight the 80th column
+"set colorcolumn=80              "highlight the 80th column
 "Turn on highlighting, and highlight current line with grey.
 "set cursorline
 "" Whitespace

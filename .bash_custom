@@ -11,6 +11,10 @@ if [ -f ~/.bash_home ]; then
   . ~/.bash_home
 fi
 
+tryssh() {
+    until nc -vzw 2 "$1" 22; do sleep 2; done
+}
+
 # Send stdin to sprunge.us (pastebin service)
 pastebin() { curl --silent -F 'sprunge=<-' http://sprunge.us; }
 
@@ -32,18 +36,6 @@ lsshare() {
     s3cmd ls "s3://share.usrsb.in/"
 }
 
-torrent() {
-    scp "$1" raspi-local:~/torrents/
-}
-
-lstorrent() {
-    ssh raspi-local "ls ~/torrents"
-}
-
-gettorrent() {
-    scp -r raspi-local:~/torrents/"$1" .
-}
-
 # Aliases
 alias dir-size="du -hs"
 alias pgen="xkpa -nil 6 -s ''"
@@ -52,53 +44,22 @@ alias r="popd"
 alias ll="ls -Gla"
 alias ls="ls -G"
 alias ppj="python -mjson.tool"
-alias rsrc="source ~/.bash_profile"
+alias rsrc="source ~/.bashrc"
 # Git
 alias gtree="git log --graph --oneline --all"
 
 export EDITOR=vim
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/bin/google-cloud"
+export DISPLAY=":0.0"
 
 source ~/dotfiles/git-completion.bash
 
-# Prevent XQuartz from launching whenever I open vim.
-export DISPLAY=
+# execute when opening a python repl.
+export PYTHONSTARTUP=~/.pythonrc
 
-sping ()
+workon ()
 {
-    if [ -z "$1" ]; then
-        echo "Usage: sping <hostname> [<host2> <host3>]";
-        return;
-    fi;
-    date
-    if [ "$2" ]; then
-        while sleep 1; do
-            host_down=false;
-            for host in $@;
-            do
-                tcping -t 2 $host 22 || host_down="true";
-            done;
-            [ $host_down = true ] || {
-                unset HOSTS && break
-            };
-        done;
-    else
-        while sleep 1; do
-            tcping -t 2 $1 22 && break;
-        done;
-    fi
-    date
-}
-
-deploy_tag ()
-{
-    APP="$1"
-    if [ -z "$APP" ]; then
-        echo "Please supply an app name. deploy_tag APP_NAME"
-        return 1
-    fi
-    TAG="datadelivery-enrichments/$APP-release-$(date +%Y-%m-%d-%s)"
-    git tag "$TAG" && git push origin "$TAG"
+    . ~/.virtualenvs/$1/bin/activate
 }
 
 rm_host ()
