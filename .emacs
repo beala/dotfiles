@@ -4,12 +4,10 @@
   'package-archives
   '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
-(package-refresh-contents)
 
 ;; Install Intero
 (package-install 'intero)
 (add-hook 'haskell-mode-hook 'intero-mode)
-
 
 ;; Enable mouse support
 (unless window-system
@@ -57,10 +55,6 @@
  )
 
 (load-theme 'solarized-dark)
-
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
 
 (with-eval-after-load 'org
   (add-hook 'org-mode-hook #'visual-line-mode))
