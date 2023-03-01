@@ -1,3 +1,0 @@
-alias cdb="cd ~/workspace/source/birdcage"
-alias cdf="cd ~/workspace/gnip-fanout"
-alias twitter-repl="(cdb && ./pants repl util/util-core::)"
